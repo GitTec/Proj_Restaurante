@@ -20,6 +20,9 @@ class Funcionario {
     @Column()
     telefone: string
 
+    @Column()
+    senha?: string
+
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date
 

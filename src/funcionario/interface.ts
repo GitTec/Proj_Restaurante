@@ -4,6 +4,7 @@ interface ICadastrarFuncionario {
     cpf: string;
     dtNascimento: Date;
     telefone: string;
+    senha: string;
 }
 
 interface IEditarFuncionario {
@@ -12,7 +13,12 @@ interface IEditarFuncionario {
     cpf: string;
     dtNascimento: Date;
     telefone: string;
+    senha: string;
     id: number;
 }
 
-export { ICadastrarFuncionario, IEditarFuncionario }
+interface IRecuperarSenha {
+    senha: string;
+    id: number;
+}
+export { ICadastrarFuncionario, IEditarFuncionario, IRecuperarSenha }

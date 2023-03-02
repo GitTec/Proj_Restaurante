@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../typeorm.config"
-import { ICadastrarFuncionario, IEditarFuncionario } from "./interface"
+import { ICadastrarFuncionario, IEditarFuncionario, IRecuperarSenha } from "./interface"
 import { Funcionario } from "./entidade"
-
 
 class ModelFuncionario {
     private repositorio = AppDataSource.getRepository(Funcionario)
@@ -11,9 +10,9 @@ class ModelFuncionario {
     }
 
     async cadastrar(dados: ICadastrarFuncionario) {
-        const { nome, email, cpf, dtNascimento, telefone } = dados
+        const { nome, email, cpf, dtNascimento, telefone, senha } = dados
         const funcionario = this.repositorio.create({
-            nome, cpf, dtNascimento, email, telefone
+            nome, cpf, dtNascimento, email, telefone, senha
         })
         return this.repositorio.save(funcionario)
     }
@@ -29,7 +28,26 @@ class ModelFuncionario {
         funcionario!.dtNascimento = dados.dtNascimento
         funcionario!.email = dados.email
         funcionario!.telefone = dados.telefone
+        funcionario!.senha = dados.senha
         return this.repositorio.save(funcionario)
+    }
+
+    async recuperarSenha(dados: IRecuperarSenha) {
+        const funcionario = await this.repositorio.findOneOrFail({
+            where: {
+                id: dados.id
+            }
+        })
+        funcionario!.senha = dados.senha
+        return this.repositorio.save(funcionario)
+    }
+
+    async buscarPorEmail(email: string) {
+        return this.repositorio.findOne({
+            where: {
+                email
+            }
+        })
     }
 
     async excluir(id: number) {
