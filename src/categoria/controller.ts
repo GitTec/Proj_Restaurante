@@ -9,6 +9,13 @@ class ControllerCategoria {
         res.json(categoria)
     }
 
+    async listandoUm(req: Request, res: Response) {
+        const { id } = req.params
+        const model = new ModelCategoria();
+        const categoria = await model.buscarPorId(+id);   //+ converte automaticamente uma string para numero
+        return res.json(categoria)
+    }
+
     async cadastrando(req: Request, res: Response) {
         const model = new ModelCategoria();
         const { nome } = req.body

@@ -6,7 +6,14 @@ class ControllerMeioPagamento {
     async listando(req: Request, res: Response) {
         const model = new ModelMeioPagamento();
         const meiopgto = await model.listar();
-        res.json(meiopgto)
+        return res.json(meiopgto)
+    }
+
+    async listandoUm(req: Request, res: Response) {
+        const { id } = req.params;
+        const model = new ModelMeioPagamento();
+        const meiopgto = await model.buscarPorId(+id);
+        return res.json(meiopgto);
     }
 
     async cadastrando(req: Request, res: Response) {

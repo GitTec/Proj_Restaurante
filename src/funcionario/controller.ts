@@ -11,6 +11,13 @@ class ControllerFuncionario {
         return res.json(funcionario)
     }
 
+    async listandoUm(req: Request, res: Response) {
+        const {id} = req.params
+        const model = new ModelFuncionario();
+        const funcionario = await model.buscarPorId(+id);   //+ converte automaticamente uma string para numero
+        return res.json(funcionario)
+    }
+
     async cadastrando(req: Request, res: Response) {
         const model = new ModelFuncionario();
         const { nome, email, cpf, dtNascimento, telefone, senha } = req.body
@@ -54,7 +61,7 @@ class ControllerFuncionario {
             id: funcionario.id
         }, process.env.JWT_KEY ?? "", {
             subject: funcionario.email,
-            expiresIn: 150
+            expiresIn: "1h"
         })
         delete funcionario.senha
 

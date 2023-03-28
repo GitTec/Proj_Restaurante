@@ -6,6 +6,7 @@ const rotasFuncionario = Router();
 const controller = new ControllerFuncionario();
 
 rotasFuncionario.get("/", autenticarUsuario, controller.listando);
+rotasFuncionario.get("/:id", autenticarUsuario, controller.listandoUm);
 rotasFuncionario.post("/", autenticarUsuario, controller.cadastrando);
 rotasFuncionario.put("/:id", autenticarUsuario, controller.editando);
 rotasFuncionario.patch("/recuperarSenha/:id", controller.alterandoSenha);

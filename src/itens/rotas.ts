@@ -12,6 +12,7 @@ const rotasItem = Router();
 const controller = new ControllerItem();
 
 rotasItem.get("/", controller.listando);
+rotasItem.get("/:id", autenticarUsuario, controller.listandoUm);
 rotasItem.post("/", autenticarUsuario, uploadMulter.single("imagem"), controller.cadastrando);
 rotasItem.put("/:id", autenticarUsuario, uploadMulter.single("imagem"), controller.editando);
 rotasItem.delete("/:id", autenticarUsuario, controller.excluindo);

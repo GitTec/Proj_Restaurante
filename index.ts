@@ -6,12 +6,14 @@ import { rotasMeioPgto } from "./src/meio_pgto/rotas";
 import { rotasCategoria } from "./src/categoria/rotas";
 import { rotasFuncionario } from "./src/funcionario/rotas";
 import { rotasItem } from "./src/itens/rotas";
+import cors from "cors"
 
 env.config()
 AppDataSource.initialize().then(async () => {
 
     const app = express();
     app.use(express.json());
+    app.use(cors());
 
     app.get("/", (req, res) => {
         return res.send("<h1>Aplicação Restaurant dando inicio!!</h1>")

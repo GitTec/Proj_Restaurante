@@ -9,6 +9,14 @@ class ModelFuncionario {
         return this.repositorio.find()
     }
 
+    async buscarPorId(id: number) {
+        return this.repositorio.findOne({
+            where: {
+                id
+            }
+        })
+    }
+
     async cadastrar(dados: ICadastrarFuncionario) {
         const { nome, email, cpf, dtNascimento, telefone, senha } = dados
         const funcionario = this.repositorio.create({

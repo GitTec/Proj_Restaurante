@@ -10,6 +10,14 @@ class ModelMeioPagamento {
         })
     }
 
+    async buscarPorId(id: number) {
+        return this.repositorio.findOne({
+            where: {
+                id
+            }
+        })
+    }
+
     async cadastrar(dados: ICadastrarModeloPagamento) {
         const { tipo_pagamento, valor_acrescimos } = dados
         const modelopagamento = this.repositorio.create({

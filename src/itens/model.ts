@@ -12,6 +12,14 @@ class ModelItem {
         })
     }
 
+    async buscarPorId(id: number) {
+        return this.repositorio.findOne({
+            where: {
+                id
+            }
+        })
+    }
+
     async cadastrar(dados: ICadastrarItem) {
         const { nome, valor, detalhes, imagem, idCategoria } = dados
         const item = this.repositorio.create({
@@ -29,7 +37,7 @@ class ModelItem {
         item!.nome = dados.nome
         item!.valor = dados.valor
         item!.detalhes = dados.detalhes
-        item!.imagem = dados.imagem??""
+        item!.imagem = dados.imagem ?? ""
         item!.idCategoria = dados.idCategoria
         return this.repositorio.save(item)
     }

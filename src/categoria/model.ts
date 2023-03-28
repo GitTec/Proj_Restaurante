@@ -11,6 +11,14 @@ class ModelCategoria {
         })
     }
 
+    async buscarPorId(id: number) {
+        return this.repositorio.findOne({
+            where: {
+                id
+            }
+        })
+    }
+
     async cadastrar(dados: ICadastrarCategoria) {
         const { nome } = dados
         const categoria = this.repositorio.create({
