@@ -7,6 +7,7 @@ import { rotasCategoria } from "./src/categoria/rotas";
 import { rotasFuncionario } from "./src/funcionario/rotas";
 import { rotasItem } from "./src/itens/rotas";
 import cors from "cors"
+import { rotasVenda } from "./src/venda/rotas";
 
 env.config()
 AppDataSource.initialize().then(async () => {
@@ -24,6 +25,7 @@ AppDataSource.initialize().then(async () => {
     app.use("/categorias", rotasCategoria)
     app.use("/funcionarios", rotasFuncionario)
     app.use("/itens", rotasItem)
+    app.use("/vendas", rotasVenda)
 
     app.listen(8000, () => {
         console.log("Servidor iniciado com sucesso!!")

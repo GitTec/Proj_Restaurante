@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Categoria } from "../categoria/entidade";
+import { VendaProduto } from "../venda_produto/entidade";
 
 @Entity("tb_itens")
 class Itens {
@@ -30,5 +31,9 @@ class Itens {
     @ManyToOne(() => Categoria, cat => cat.itens)//Muitos ITENS para uma CATEGORIA
     @JoinColumn({ name: "id_categoria" })
     categoria: Categoria
+
+    @OneToMany(() => VendaProduto, vndprd => vndprd.venda)
+    @JoinColumn({ name: "id" })
+    venda: VendaProduto[]
 }
 export { Itens }
